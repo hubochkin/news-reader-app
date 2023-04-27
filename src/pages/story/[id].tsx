@@ -20,8 +20,8 @@ export default function StoryPage({ story }: StoryProps) {
   const router = useRouter();
   const [storedObj, setStoredObj] = useState({} as any);
 
-
   useEffect(() => {
+
     if (!localStorage.getItem('myObj')) {
 
       // Create a new object with a neutral status
@@ -34,17 +34,19 @@ export default function StoryPage({ story }: StoryProps) {
     const data = localStorage.getItem('myObj') || '{}';
     const myStorage = JSON.parse(data);
 
+    console.log(myStorage)
 
-
-    if (!myStorage[id] || myStorage[id]?.status) {
-      
+    if (!myStorage[id]) {
       const newObj = { ...myStorage, [id]: { status: 'neutral' } };
 
       localStorage.setItem('myObj', JSON.stringify(newObj));
       setStoredObj(newObj)
+
+    } else {
+      const status = myStorage[id].status;
+      status && setStatus(status);
+      setStoredObj(myStorage)
     }
-    const status = myStorage[id]?.status;
-    status && setStatus(status);
   }, [id]);
 
 
@@ -69,7 +71,7 @@ export default function StoryPage({ story }: StoryProps) {
     setStatus('inactive');
   };
 
-  
+
 
 
   return (
@@ -77,8 +79,9 @@ export default function StoryPage({ story }: StoryProps) {
       <h1>{title}</h1>
       <p>By {author}</p>
       <p>{points} points</p>
+      Icon status: {status}
       <div style={{ display: 'flex' }}>
-        Icon status: {status}
+       
         <div onClick={handleThumbsUp} style={{ cursor: 'pointer' }}>
           <FontAwesomeIcon icon={faThumbsUp} />
         </div>
