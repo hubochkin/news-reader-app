@@ -19,3 +19,18 @@ export default async function handler(
   }));
     res.status(200).json(stories);
 }
+
+export const getTopStories = async () => {
+
+  const response = await fetch(`${API_BASE_URL}/search?tags=front_page`).then(res => res.json())
+
+  const topStoryIds = response.hits
+  
+  const stories: IStory[] = topStoryIds.map((story:any) => ({
+    id: story.objectID,
+    title: story.title,
+    author: story.author,
+    points: story.points,
+  }));
+  return stories
+}

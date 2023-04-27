@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/styles.module.css';
 import { GetStaticPaths } from 'next';
+import { getTopStories } from './api/top-stories';
 
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
@@ -15,15 +16,6 @@ interface Story {
 
 export default function Home({ stories: initialStories }: { stories: Story[] }) {
   const [stories, setStories] = useState<Story[]>(initialStories);
-
-  // useEffect(() => {
-  //   const fetchStories = async () => {
-  //     const res = await fetch(`${API_BASE_URL}/api/top-stories`);
-  //     const data = await res.json();
-  //     setStories(data);
-  //   };
-  //   fetchStories();
-  // }, []);
 
   return (
     <div>
@@ -60,8 +52,8 @@ export default function Home({ stories: initialStories }: { stories: Story[] }) 
 
 
 export async function getStaticProps() {
-  const response = await fetch(`${API_BASE_URL}/api/top-stories`)
-  const data = await response.json();
+
+  const data = await getTopStories()
   const stories = data;
   return {
     props: {
