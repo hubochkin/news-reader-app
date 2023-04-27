@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && next export",
+  "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,9 +14,13 @@
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "isomorphic-unfetch": "^4.0.2",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }

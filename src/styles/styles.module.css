@@ -1,0 +1,30 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+ 
+  .storyList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .storyItem {
+    margin-bottom: 20px;
+  }
+  
+  .storyLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .storyTitle {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .storyMeta {
+    margin: 0;
+    font-size: 14px;
+    color: gray;
+  }
